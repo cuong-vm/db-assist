@@ -12,7 +12,8 @@ I create this tool to use in development environment only, NOT in production env
 1. Download Oracle client: https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html
 2. Unzip to a folder
 3. Set system path variables to the folder
-Should follow this guideline at https://docs.oracle.com/en/database/oracle/r-enterprise/1.5.1/oread/installing-oracle-database-instant-client.html
+
+Follow this guideline for details https://docs.oracle.com/en/database/oracle/r-enterprise/1.5.1/oread/installing-oracle-database-instant-client.html
 
 ## Installation
 1. Install NodeJS

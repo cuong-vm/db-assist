@@ -32,15 +32,15 @@ Should follow this guideline at https://docs.oracle.com/en/database/oracle/r-ent
 2. Empty cell is considered as null value
 
 ### Special cell values
-1. Special value is started with ":=" assignment prefix
-2. db-assist can run a SELECT command to lookup data for a column. For example :=SELECT user_name FROM User where user_id = 1
+1. Special value is started with **:=** assignment prefix
+2. db-assist can run a SELECT command to lookup data for a column. For example, **:=SELECT user_name FROM User where user_id = 1**
 3. INSERT/UPDATE commands are not allowed
 4. Some custom functions to help generate random data
-  - randomBool: generates random boolean (true/false) values
-  - randomInt(min, max): generates random interger in a range of [min, max]
-  - randomDecimal(min, max, fractionDigits): generates random decimal in a range of [min, max]
-  - randomFloat(min, max, fractionDigits): same as randomDecimal
-  - randomChars(length): generates a random string with fixed length
-5. Others are considered as database's functions or values. For example: :=null (insert null), :=sysdate (insert date for Oracle), etc.
+  - **randomBool**: generates random boolean (true/false) values
+  - **randomInt(min, max)**: generates random interger in a range of [min, max]
+  - **randomDecimal(min, max, fractionDigits)**: generates random decimal in a range of [min, max]
+  - **randomFloat(min, max, fractionDigits)**: same as randomDecimal
+  - **randomChars(length)**: generates a random string with fixed length
+5. Others are considered as database's functions or values. For example, **:=null** (insert null), **:=sysdate** (insert date for Oracle), etc.
 
 Please check test folder for examples.

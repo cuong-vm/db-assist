@@ -33,7 +33,7 @@ Follow this guideline for details https://docs.oracle.com/en/database/oracle/r-e
 2. Empty cell is considered as null value
 
 ### Special cell values
-1. Special value is started with **:=** assignment prefix
+1. Special value is started with "**:=**" assignment prefix
 2. db-assist can run a SELECT command to lookup data for a column. For example, **:=SELECT user_name FROM User where user_id = 1**
 3. INSERT/UPDATE commands are not allowed
 4. Some custom functions to help generate random data

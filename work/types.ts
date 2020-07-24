@@ -21,3 +21,8 @@ export type CustomFunction = {
   args: number[],
   valid: boolean
 }
+
+export type SqlCache = {
+  sql: string,
+  row: any
+}

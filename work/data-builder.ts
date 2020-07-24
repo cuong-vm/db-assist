@@ -1,16 +1,18 @@
 import * as Excel from "exceljs"
 import * as PromiseExt from "./promise-ext"
-import Column from "./column"
 import DBAbstract from "./db-abstract"
-import { HeaderType, RecordType, RecordValue, CustomFunction } from "./types"
+import { HeaderType, RecordType, RecordValue, CustomFunction, SqlCache } from "./types"
 
 export default class DataBuilder {
 
   readonly db: DBAbstract
-  readonly alphabet: string
-  readonly alphabetSize: number
-  readonly numericAlphabet: string
-  readonly numericAlphabetSize: number
+
+  private readonly alphabet: string
+  private readonly alphabetSize: number
+  private readonly numericAlphabet: string
+  private readonly numericAlphabetSize: number
+  private cache: SqlCache[]
+  private readonly cacheSize: number = 20
 
   constructor(db: DBAbstract) {
     this.db = db
@@ -18,6 +20,11 @@ export default class DataBuilder {
     this.alphabetSize = this.alphabet.length
     this.numericAlphabet = this.alphabet + '0123456789'
     this.numericAlphabetSize = this.numericAlphabet.length
+    this.cache = []
+  }
+
+  reset() {
+    this.cache = []
   }
 
   async build(sheet: Excel.Worksheet, headers: HeaderType, rowIndex: number): Promise<RecordType> {
@@ -188,22 +195,44 @@ export default class DataBuilder {
   }
 
   private async fetchAssignment(sql: string, asignment: string, cell: Excel.Cell): Promise<RecordValue> {
-    return this.db.selectRaw(sql)
-      .then(res => this.selectFirstRow(res))
+    let keepErr = false
+    return this.queryAssignment(sql)
       .then(row => {
         if (row) {
           const keys = Object.keys(row)
           return row[keys[0]]
         } else {
-          throw new Error(`SELECT command not found at ${cell.address}: ${asignment}`)
+          keepErr = true
+          throw new Error(`After running SELECT command, no results found at ${cell.address}: ${asignment}`)
         }
       })
       .catch(err => {
-        throw new Error(`SELECT command failed at ${cell.address}: ${asignment} (${err.message})`)
+        if (keepErr) {
+          throw err
+        } else {
+          throw new Error(`SELECT command failed at ${cell.address}: ${asignment} (${err.message})`)
+        }
       })
   }
 
-  private selectFirstRow(res: any): any[] {
+  private queryAssignment(sql: string) {
+    const value = this.cache.find(item => item.sql === sql)
+    if (value) {
+      return Promise.resolve(value.row)
+    } else {
+      return this.db.selectRaw(sql)
+        .then(res => this.pickFirstRow(res))
+        .then(row => {
+          if (this.cache.length >= this.cacheSize) {
+            this.cache.shift()
+            this.cache.push({ sql, row })
+          }
+          return row
+        })
+    }
+  }
+
+  private pickFirstRow(res: any): any[] {
     let rows: any[] = []
     if (this.db.type === 'oracle') {
       rows = res.rows

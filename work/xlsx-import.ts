@@ -18,6 +18,7 @@ export default class XlsxImport {
   }
 
   async import(filePath: string) {
+    this.dataBuilder.reset()
     const sheet = await this.readWorkbook(filePath)
     const tableColumns = await this.readTableColumns(sheet)
     await this.scanRows(tableColumns)

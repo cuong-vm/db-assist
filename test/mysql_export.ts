@@ -3,7 +3,7 @@ import Column from "../work/column"
 import DBStarter from "../work/db-starter"
 import Table from "../work/table"
 import XlsxExport from "../work/xlsx-export"
-import config from "./config/mariadb"
+import config from "./config/mysql"
 import { mkdir, exists } from "fs"
 import { resolve } from "path"
 

@@ -1,7 +1,7 @@
 import * as PromiseExt from "../work/promise-ext"
 import DBStarter from "../work/db-starter"
 import XlsxImport from "../work/xlsx-import"
-import config from "./config/mariadb"
+import config from "./config/mysql"
 import { mkdir, exists } from "fs"
 import { resolve } from "path"
 

@@ -18,7 +18,7 @@ export default class DBStarter {
   async start(): Promise<DBAbstract> {
     if (this.type === 'oracle') {
       return await this.startOracle()
-    } else if (this.type === 'mariadb') {
+    } else if (this.type === 'mariadb' || this.type === 'mysql') {
       return await this.startMariadb()
     } else {
       throw new Error(`Database type '${this.type}' is not supported yet`)

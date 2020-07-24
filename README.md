@@ -1,6 +1,11 @@
 # About db-assist
 A tiny tool for importing & exporting data for developer & tester through Excel file. Why? Because it is simple to create an Excel data file and discuss among team members and it is also easy to update the data.
 
+## Database support
+1. Oracle
+2. MySQL
+3. MariaDB
+
 ## Important
 I create this tool to use in development environment only, NOT in production environment. Please take care of that!
 

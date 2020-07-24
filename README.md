@@ -14,7 +14,7 @@ I create this tool to use in development environment only, NOT in production env
 2. Typescript
 
 ### Oracle client (only for Oracle database)
-1. Download Oracle client: https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html
+1. Download Oracle client at https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html
 2. Unzip to a folder
 3. Set system path variables to the folder
 
@@ -39,14 +39,14 @@ Follow this guideline for details https://docs.oracle.com/en/database/oracle/r-e
 
 ### Special cell values
 1. Special value is started with "**:=**" assignment prefix
-2. db-assist can run a SELECT command to lookup data for a column. For example, **:=SELECT user_name FROM User where user_id = 1**
+2. db-assist can run a SELECT command to lookup data for a column. For example, **:=SELECT user_name FROM User WHERE user_id = 1**
 3. INSERT/UPDATE commands are not allowed
 4. Some custom functions to help generate random data
-  - **randomBool**: generates random boolean (true/false) values
-  - **randomInt(min, max)**: generates random interger in a range of [min, max]
-  - **randomDecimal(min, max, fractionDigits)**: generates random decimal in a range of [min, max]
-  - **randomFloat(min, max, fractionDigits)**: same as randomDecimal
-  - **randomChars(length)**: generates a random string with fixed length
-5. Others are considered as database's functions or values. For example, **:=null** (insert null), **:=sysdate** (insert date for Oracle), etc.
+  - **randomBool**: Generates random boolean (true/false) values
+  - **randomInt(min, max)**: Generates random interger in a range of [min, max]. All parameters are required.
+  - **randomDecimal(min, max, fractionDigits)**: Generates random decimal in a range of [min, max]. All parameters are required.
+  - **randomFloat(min, max, fractionDigits)**: Same as randomDecimal
+  - **randomChars(length)**: Generates a random string with fixed length. Parameter is required.
+5. Others are considered as database's functions or values. For example, **:=null** (insert null), **:=sysdate** (insert date for Oracle), **:=now()** (insert timestamp for MySQL/MariaDB), etc.
 
 Please check test folder for examples.

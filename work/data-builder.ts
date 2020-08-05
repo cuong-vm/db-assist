@@ -64,8 +64,8 @@ export default class DataBuilder {
           const asignment = parts[1].trim()
           const cmd = asignment.toLowerCase()
 
-          if (cmd.startsWith('insert ') || cmd.startsWith('update ')) {
-            throw new Error(`Invalid asignment at ${cell.address}: ${asignment}`)
+          if (this.isForbiddenCommand(cmd)) {
+            throw new Error(`Unsupported SQL command at ${cell.address}: ${asignment}. Only pure SELECT command is allowed.`)
           } else if (cmd.startsWith('select ')) {
             return this.fetchAssignment(cmd, asignment, cell)
               .then(value => {
@@ -98,6 +98,16 @@ export default class DataBuilder {
     }
 
     return Promise.resolve(res)
+  }
+
+  private isForbiddenCommand(cmd: string) {
+    const forbiddenCommands = [
+      'insert ',
+      'update ',
+      'delete ',
+      'drop '
+    ]
+    return forbiddenCommands.filter(keyword => cmd.indexOf(keyword)).length > 0
   }
 
   private checkRandomFunctions(cmd: string) {

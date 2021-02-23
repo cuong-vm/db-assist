@@ -47,6 +47,6 @@ Follow this guideline for details https://docs.oracle.com/en/database/oracle/r-e
   - **randomDecimal(min, max, fractionDigits)**: Generates random decimal in a range of [min, max]. All parameters are required.
   - **randomFloat(min, max, fractionDigits)**: Same as randomDecimal
   - **randomChars(length)**: Generates a random string with fixed length. Parameter is required.
-5. Others are considered as database's functions or values. For example, **:=null** (insert null), **:=sysdate** (insert date for Oracle), **:=now()** (insert timestamp for MySQL/MariaDB), etc.
+5. Others are considered as database functions or values. For example, **:=null** (insert null), **:=sysdate** (insert date for Oracle), **:=now()** (insert timestamp for MySQL/MariaDB), etc.
 
 Please check test folder for examples.

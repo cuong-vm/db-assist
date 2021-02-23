@@ -43,7 +43,7 @@ Follow this guideline for details https://docs.oracle.com/en/database/oracle/r-e
 3. INSERT/UPDATE commands are not allowed
 4. Some custom functions to help generate random data
   - **randomBool**: Generates random boolean (true/false) values
-  - **randomInt(min, max)**: Generates random interger in a range of [min, max]. All parameters are required.
+  - **randomInt(min, max)**: Generates random integer in a range of [min, max]. All parameters are required.
   - **randomDecimal(min, max, fractionDigits)**: Generates random decimal in a range of [min, max]. All parameters are required.
   - **randomFloat(min, max, fractionDigits)**: Same as randomDecimal
   - **randomChars(length)**: Generates a random string with fixed length. Parameter is required.
